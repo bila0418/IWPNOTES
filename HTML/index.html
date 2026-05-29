@@ -1,7 +1,22 @@
 <!DOCTYPE html> <!-- This specifies that the document is an HTML5 document -->
 <HTML> <!-- This is the root element of the HTML document -->
 <HEAD> <!-- This section contains meta-information about the document, such as the title and links to stylesheets or scripts -->
-<link rel="icon" type="image/jpg" href="favicon.jpg"> <!-- This is a link element that specifies the favicon for the web page -->
+
+    <meta charset="UTF-8"> <!-- Sets character encoding to UTF-8, preventing garbled/broken characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive on mobile devices -->
+    <meta name="description" content="My first web page - HTML notes"> <!-- Short page summary shown in search engine results -->
+
+    <!-- Notes: <meta> element — common uses
+         - charset="UTF-8": always include first; defines how text characters are encoded
+         - name="viewport": required for mobile responsiveness; initial-scale=1.0 sets default zoom
+         - name="description": shown in Google/Bing search snippets (keep under 160 chars)
+         - name="keywords": comma-separated keywords (low SEO value today, but still used)
+         - name="author": name of the page author
+         - http-equiv="X-UA-Compatible" content="IE=edge": forces IE to use latest rendering engine
+         All <meta> tags go in <head> and are invisible to the user.
+    -->
+
+    <link rel="icon" type="image/jpg" href="favicon.jpg"> <!-- This is a link element that specifies the favicon for the web page -->
 
     <!-- Notes: <link> element — multiple uses and rel attribute values
          - rel="stylesheet": link external CSS file (e.g., <link rel="stylesheet" href="style.css">)
@@ -36,26 +51,26 @@
 
     <p> <!-- This is a paragraph element that displays a block of text -->
 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    </p> 
+    </p>
 
      <pre> <!-- This is a preformatted text element that displays text with its original formatting -->
 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    </pre> 
+    </pre>
 
-<a  href="https://www.google.com" 
-target="_blank" 
+<a  href="https://www.google.com"
+target="_blank"
 title="Goes to Google">
 <!--  a (anchor) is a hyperlink element that creates a link to another page or resource -->
 <!-- HREF is a attribute that specifies the URL of the link -->
@@ -68,13 +83,13 @@ Click me to go to Google!
 <br>
 
 <a href="exercises.html"> <!-- href can also link to other html files-->
-Song lyrics  
+Song lyrics
 </a>
 
 <br>
 <br>
 
-<a href="mailto:test@mail.com" 
+<a href="mailto:test@mail.com"
 title="Send email to test">
 Email me.
 </a> <!-- href can also send emails to a specific address-->
@@ -102,6 +117,20 @@ Email me.
     <!-- Can also display gifs-->
 </a>
 
+<br><br>
+
+<h4>figure and figcaption</h4>
+<figure>
+    <img src="images/hamze.jpg" alt="Me when bro buys food" height="150">
+    <figcaption>Me every time bro buys food</figcaption>
+</figure>
+<!-- Notes: <figure> and <figcaption>
+     - <figure>: wraps self-contained content like images, diagrams, or code snippets
+     - <figcaption>: visible caption inside <figure>; use for descriptive context, not a repeat of alt
+     - Different from alt: alt is for screen readers / broken images; figcaption is visible to all users
+     - <figure> can hold multiple images, a <pre> block, a <video>, etc.
+-->
+
 <audio controls autoplay muted loop> <!-- This is an audio element that allows you to embed audio content on the page -->
 <source src="Janice STFUsong.mp3" type="audio/mpeg"> <!-- This is a source element that specifies the audio file and its type -->
 <!-- controls is an attribute that displays playback controls for the audio element -->
@@ -121,6 +150,27 @@ Email me.
 
 <br><br>
 
+<h4>Embedded Content (iframe)</h4>
+<iframe
+    src="https://www.wikipedia.org"
+    width="600"
+    height="300"
+    title="Wikipedia homepage"
+    loading="lazy">
+</iframe>
+<!-- Notes: <iframe> — embeds another HTML page or external content inside your page
+     - src: URL of the page to embed (YouTube, Google Maps, other sites)
+     - width / height: dimensions in pixels or %
+     - title: required for accessibility — describes the embedded content to screen readers
+     - loading="lazy": defers loading until the iframe is near the viewport (improves performance)
+     - sandbox: restricts what embedded content can do (e.g., sandbox="allow-scripts allow-same-origin")
+     - Common uses: YouTube videos (use embed URL), Google Maps, payment widgets
+     Example YouTube embed: <iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" title="..." allowfullscreen></iframe>
+     Note: many sites block embedding via the X-Frame-Options HTTP header.
+-->
+
+<br><br>
+
 <p> This is normal text</p>
 <p> This is <b>bold</b> text</p>
 <p> This is <i>italic</i> text</p>
@@ -132,6 +182,35 @@ Email me.
 <p> This is <sup>superscript</sup> text</p>
 <p> This is <tt>monospaced</tt> text</p>
 <p> This is <mark>highlighted</mark> text</p>
+<p> This is <strong>strong (important)</strong> text</p> <!-- strong = semantic importance, announced by screen readers -->
+<p> This is <em>emphasized</em> text</p> <!-- em = stressed emphasis, semantic; vs <i> which is just italic styling -->
+
+<!-- Notes: <strong> vs <b>, <em> vs <i>
+     - <strong>: marks text as important/urgent — screen readers announce the emphasis. Use for warnings, key terms.
+     - <b>: bold styling only, no semantic meaning. Use for stylistic bold without importance.
+     - <em>: stressed emphasis that can change sentence meaning — screen readers stress it. e.g. "I <em>never</em> said that"
+     - <i>: italic styling only. Use for technical terms, foreign words, or publication titles.
+     Prefer <strong> and <em> over <b> and <i> for accessible, semantic HTML.
+-->
+
+<br><br>
+
+<h4>HTML Entities</h4>
+<!-- Notes: HTML Entities — special characters that need escaping or have no keyboard key
+     - &amp;   → &   (ampersand — must escape inside HTML to avoid parser confusion)
+     - &lt;    → <   (less-than — must escape so browser doesn't interpret it as an opening tag)
+     - &gt;    → >   (greater-than)
+     - &nbsp;  →     (non-breaking space — prevents line break between two words; use sparingly)
+     - &copy;  → ©   (copyright)
+     - &reg;   → ®   (registered trademark)
+     - &trade; → ™   (trademark)
+     - &mdash; → —   (em dash — longer dash used in writing like "he said—without warning")
+     - &ndash; → –   (en dash — used in ranges like 2010–2020)
+     - &quot;  → "   (double quote)
+     - &apos;  → '   (apostrophe/single quote)
+     Use entities any time a character has special meaning in HTML or is hard to type directly.
+-->
+<p>&amp; &lt; &gt; &nbsp;&nbsp;(non-breaking space) &copy; &reg; &trade; &mdash; &ndash; &quot; &apos;</p>
 
 <br><br>
 
@@ -159,7 +238,7 @@ Email me.
 <h4> To Do List </h4>
 <ol> <!-- This is an ordered list element that creates a numbered list -->
     <li> Eat breakfast </li>
-    <li> Go to class </li>  
+    <li> Go to class </li>
     <li> Walk the dog</li>
     <li> Work </li>
 </ol>
@@ -169,7 +248,7 @@ Email me.
     <dt> Dragon </dt> <!-- This is a description term element that represents a term -->
     <dd> A mythical creature </dd> <!-- This is a description description element that provides the description for the term -->
     <dt> Phoenix </dt>
-    <dd> A mythical bird that is reborn from its ashes </dd>   
+    <dd> A mythical bird that is reborn from its ashes </dd>
     <dt> Vampire </dt>
     <dd> A mythical being that feeds on the blood of humans </dd>
     <dt> Werewolf </dt>
@@ -180,25 +259,44 @@ Email me.
 
 <h3>Store Hours</h3>
 
-<table border="1" style="background-color: black;"> <!-- This is a table element that creates a table to display data in rows and columns and border gives the table a border -->
-    <tr align="center" style="background-color: lightblue;"> <!-- This is a table row element that represents a row in the table -->
-    <th width="100"> Sunday </th> <!-- This is a table header element that represents a header cell in the table -->
-    <th width="100"> Monday </th>
-    <th width="100"> Tuesday </th>
-    <th width="100"> Wednesday </th>
-    <th width="100"> Thursday </th>
-    <th width="100"> Friday </th>
-    <th width="100"> Saturday </th>
-    </tr>
-    <tr align="center" style="background-color: aliceblue;"> <!-- This is a table row element that represents a row in the table, with text aligned to the center -->
-        <td> Closed </td>   <!-- This is a table data element that represents a cell in the table -->
-        <td> 9:00 AM - 5:00 PM </td>
-        <td> 9:00 AM - 5:00 PM </td>
-        <td> 9:00 AM - 5:00 PM </td>
-        <td> 9:00 AM - 5:00 PM </td>
-        <td> 9:00 AM - 5:00 PM </td>
-        <td> 10:00 AM - 2:00 PM </td>
-    </tr>
+<table border="1" style="background-color: black;">
+    <caption style="color: white; caption-side: top;">Weekly Store Schedule</caption>
+    <!-- <caption> describes the table's purpose; must be the first child of <table> -->
+
+    <thead style="background-color: lightblue;"> <!-- thead: groups header rows; helps screen readers associate headers with data cells -->
+        <tr align="center">
+            <th width="100"> Sunday </th>
+            <th width="100"> Monday </th>
+            <th width="100"> Tuesday </th>
+            <th width="100"> Wednesday </th>
+            <th width="100"> Thursday </th>
+            <th width="100"> Friday </th>
+            <th width="100"> Saturday </th>
+        </tr>
+    </thead>
+
+    <tbody style="background-color: aliceblue;"> <!-- tbody: groups the main data rows of the table -->
+        <tr align="center">
+            <td> Closed </td>
+            <td colspan="5"> 9:00 AM - 5:00 PM </td> <!-- colspan="5" merges this cell across 5 columns (Mon–Fri) -->
+            <td> 10:00 AM - 2:00 PM </td>
+        </tr>
+    </tbody>
+
+    <tfoot style="background-color: lightgrey; color: black;"> <!-- tfoot: groups footer rows (totals, notes); always renders at the bottom -->
+        <tr align="center">
+            <td colspan="7"> Holiday hours may vary </td> <!-- colspan="7" spans all 7 columns -->
+        </tr>
+    </tfoot>
+
+    <!-- Notes: <thead>, <tbody>, <tfoot>, colspan, rowspan
+         - thead: wraps header rows. Browsers may repeat it when printing long tables.
+         - tbody: wraps data rows. A table can have multiple <tbody> sections.
+         - tfoot: wraps footer rows (totals, notes). Renders at bottom even if written before tbody in HTML.
+         - colspan="n": merges a cell across n columns horizontally.
+         - rowspan="n": merges a cell across n rows vertically. e.g. <td rowspan="2"> spans 2 rows down.
+         - <caption>: first child of <table>; describes the table semantically (not just a heading above it).
+    -->
 </table>
 
 
@@ -208,9 +306,9 @@ Email me.
 <button style="font-size: 25px; background-color: grey; color: lightblue; border-radius: 25px;">Click me!</button>
 </a>
 <!-- This is a button element that creates a clickable button on the page -->
-<!-- style is an attribute that allows you to apply CSS styles directly to the element -->  
+<!-- style is an attribute that allows you to apply CSS styles directly to the element -->
 <!-- font-size is a CSS property that sets the size of the text inside the button -->
-<!-- background-color is a CSS property that sets the background color of the button -->   
+<!-- background-color is a CSS property that sets the background color of the button -->
 <!-- color is a CSS property that sets the color of the text inside the button -->
 <!-- border-radius is a CSS property that sets the rounded corners of the button -->
 
@@ -262,63 +360,86 @@ function doSomething() {
     <!-- Notes: input, name
          - input: creates form controls (type=text, email, file, radio, checkbox, etc.). Use proper types to get native validation and controls.
          - name (attribute): crucial for form submission — the server receives key/value pairs where the key is input.name. Radio and checkbox groups rely on shared name values.
+         - IMPORTANT: id vs name — id is for CSS/JS targeting; name is what gets sent to the server on submit. Always set both.
          - Accessibility: pair inputs with <label for="id"> and include ids; use required, aria-label or aria-describedby for extra context.
     -->
 <form action="index.php" method="POST" enctype="multipart/form-data">
 
-    <!-- Username: text input with placeholder and length validation -->
-    <label for="Username">Username:</label>
-    <input type="text" id="Username" placeholder="Enter your username" minlength="6" maxlength="20" required>
+    <!-- Notes: <fieldset> and <legend>
+         - <fieldset>: groups related form controls with a visible border
+         - <legend>: labels the fieldset group; rendered as a caption on the border
+         - Improves accessibility — screen readers announce the legend before each input in the group
+         - Can be styled with CSS (border, padding, etc.)
+    -->
 
-    <!-- Password: password input masks user input and enforces min/max length -->
-    <label for="Password">Password:</label>
-    <input type="Password" id="Password" placeholder="Enter your password" minlength="8" maxlength="20" required>
+    <fieldset>
+        <legend>Account Info</legend>
 
-    <!-- Email: input type=email provides basic email-address validation -->
-    <label for="Email">Email:</label>
-    <input type="email" id="Email" placeholder="Enter your email" required>
+        <!-- Username: text input with placeholder and length validation -->
+        <label for="Username">Username:</label>
+        <input type="text" id="Username" name="username" placeholder="Enter your username" minlength="6" maxlength="20" required>
 
-    <!-- Phone: tel type for telephone numbers; pattern enforces formatting (two-digit groups) -->
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" placeholder="Enter your phone number" pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}">
+        <!-- Password: password input masks user input and enforces min/max length -->
+        <label for="Password">Password:</label>
+        <input type="Password" id="Password" name="password" placeholder="Enter your password" minlength="8" maxlength="20" required>
 
-    <!-- Birth date: date control shows a date picker in supporting browsers -->
-    <label for="bday">Birth Date:</label>
-    <input type="date" id="bday"><br>
+        <!-- Email: input type=email provides basic email-address validation -->
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="email" placeholder="Enter your email" required>
 
-    <!-- Quantity: number input with min/max and default value -->
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" min="0" max="99" value="1"><br>
+    </fieldset>
 
-    <!-- Title: radio buttons allow a single choice within the same 'name' group -->
-    <label for="title">Title:</label>
+    <fieldset>
+        <legend>Personal Info</legend>
 
-    <label for="Mr.">Mr.:</label>
-    <input type="radio" id="Mr." value="Mr." name="title">
-    <label for="Ms.">Ms.:</label>
-    <input type="radio" id="Ms." value="Ms." name="title">
-    <label for="PhD.">PhD.:</label>
-    <input type="radio" id="PhD." value="PhD." name="title"><br>
+        <!-- Phone: tel type for telephone numbers; pattern enforces formatting (two-digit groups) -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}">
 
-    <!-- Payment: select dropdown with predefined options; selected value is submitted -->
-    <label for="payment">Payment Method:</label>
-    <select id="payment">
-        <option value="Visa">Visa</option>
-        <option value="Mastercard">Mastercard</option>
-        <option value="Giftcard">Giftcard</option>
-    </select><br>
+        <!-- Birth date: date control shows a date picker in supporting browsers -->
+        <label for="bday">Birth Date:</label>
+        <input type="date" id="bday" name="bday"><br>
 
-    <!-- Subscribe: checkbox for boolean choice; checked state indicates subscription -->
-    <label for="subscribe">Subscribe to newsletter:</label>
-    <input type="checkbox" id="subscribe"><br>
+        <!-- Quantity: number input with min/max and default value -->
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="0" max="99" value="1"><br>
 
-    <!-- Comment: multiline text area for longer user input -->
-    <label for="comment">Comment:</label>
-    <textarea id="comment" rows="3" cols="25"></textarea><br>
+        <!-- Title: radio buttons allow a single choice within the same 'name' group -->
+        <label for="title">Title:</label>
 
-    <!-- File: file picker restricted to PNG and JPEG images via accept attribute -->
-    <label for="file">Upload a file:</label>
-    <input type="file" id="file" accept="image/png, image/jpeg"><br>
+        <label for="Mr.">Mr.:</label>
+        <input type="radio" id="Mr." value="Mr." name="title">
+        <label for="Ms.">Ms.:</label>
+        <input type="radio" id="Ms." value="Ms." name="title">
+        <label for="PhD.">PhD.:</label>
+        <input type="radio" id="PhD." value="PhD." name="title"><br>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Preferences</legend>
+
+        <!-- Payment: select dropdown with predefined options; selected value is submitted -->
+        <label for="payment">Payment Method:</label>
+        <select id="payment" name="payment">
+            <option value="Visa">Visa</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="Giftcard">Giftcard</option>
+        </select><br>
+
+        <!-- Subscribe: checkbox for boolean choice; checked state indicates subscription -->
+        <label for="subscribe">Subscribe to newsletter:</label>
+        <input type="checkbox" id="subscribe" name="subscribe"><br>
+
+        <!-- Comment: multiline text area for longer user input -->
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" rows="3" cols="25"></textarea><br>
+
+        <!-- File: file picker restricted to PNG and JPEG images via accept attribute -->
+        <label for="file">Upload a file:</label>
+        <input type="file" id="file" name="file" accept="image/png, image/jpeg"><br>
+
+    </fieldset>
 
     <!-- Reset: clears all form controls; Submit: sends the form data to the server -->
     <input type="Reset"><br>
@@ -328,12 +449,20 @@ function doSomething() {
 
 <br><br>
 
-<header style="background-color:purple;">        
+<header style="background-color:purple;">
 <h1>Welcome to My Website</h1>
-<a href="">Home</a>
-<a href="">About me</a>
-<a href="">Products</a>
-<a href="">Contact us</a>
+<nav> <!-- nav: semantic element wrapping major navigation links; screen readers can jump to it directly -->
+    <a href="">Home</a>
+    <a href="">About me</a>
+    <a href="">Products</a>
+    <a href="">Contact us</a>
+</nav>
+<!-- Notes: <nav>
+     - Wraps the main navigation links of a page (menus, breadcrumbs, table of contents)
+     - Screen readers can skip directly to <nav> blocks
+     - A page can have multiple <nav> elements (e.g., main nav + footer nav)
+     - Use only for major navigation groups, not every group of links
+-->
 <hr>
 </header>
 
@@ -343,8 +472,47 @@ function doSomething() {
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 </main>
 
+<br><br>
 
-<footer style="background-color:purple;">    
+<h3>Semantic Layout Elements</h3>
+
+<section style="border: 2px solid blue; padding: 10px; margin: 5px;">
+    <!-- section: thematic grouping of related content, usually with its own heading (like a chapter) -->
+    <h4>Section: Latest News</h4>
+
+    <article style="border: 1px solid green; padding: 8px; margin: 5px;">
+        <!-- article: self-contained content that makes sense on its own (blog post, news story, comment) -->
+        <h5>Article: Big Event Happens</h5>
+        <p>Details about the big event...</p>
+    </article>
+
+    <article style="border: 1px solid green; padding: 8px; margin: 5px;">
+        <h5>Article: Another Story</h5>
+        <p>Details about another story...</p>
+    </article>
+</section>
+
+<aside style="border: 2px solid orange; padding: 10px; margin: 5px; width: 200px;">
+    <!-- aside: content tangentially related to surrounding content (sidebars, pull quotes, related links, ads) -->
+    <h4>Aside: Related Links</h4>
+    <ul>
+        <li><a href="">Related topic 1</a></li>
+        <li><a href="">Related topic 2</a></li>
+    </ul>
+</aside>
+
+<!-- Notes: Semantic HTML5 Layout Elements
+     - <header>: introductory content or navigation for a page or section. Can appear more than once (once per section).
+     - <nav>: wraps major navigation link groups. Screen readers can skip to it directly.
+     - <main>: the dominant content of the page. Only ONE <main> per page; do not nest inside header/footer/aside.
+     - <section>: thematic grouping of related content, usually with its own heading. Like a chapter.
+     - <article>: self-contained content that makes sense on its own (blog post, news article, comment, product card).
+     - <aside>: content related but not essential to the main flow (sidebars, pull quotes, related links, ads).
+     - <footer>: closing content for a page or section (author, copyright, links).
+     Rule of thumb: use <article> when content is independently redistributable; use <section> when content has a theme; use <div> when neither applies.
+-->
+
+<footer style="background-color:purple;">
 <hr>
 Author: ME<br>
 &copy; Copyright Reserved<br>
