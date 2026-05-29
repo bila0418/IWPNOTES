@@ -1,0 +1,359 @@
+<!DOCTYPE html> <!-- This specifies that the document is an HTML5 document -->
+<HTML> <!-- This is the root element of the HTML document -->
+<HEAD> <!-- This section contains meta-information about the document, such as the title and links to stylesheets or scripts -->
+<link rel="icon" type="image/jpg" href="favicon.jpg"> <!-- This is a link element that specifies the favicon for the web page -->
+
+    <!-- Notes: <link> element — multiple uses and rel attribute values
+         - rel="stylesheet": link external CSS file (e.g., <link rel="stylesheet" href="style.css">)
+         - rel="icon": define favicon (displays in browser tab; use .ico, .png, or .jpg)
+         - rel="preload": load resource early for better performance (e.g., rel="preload" as="font" href="font.woff2" crossorigin)
+         - rel="prefetch": request resource in browser idle time (low priority; helps speed up next navigation)
+         - rel="alternate": link to alternative version of page (e.g., alternate language, print format, or RSS feed)
+         - rel="author": link to author information or contact
+         - rel="license": link to document license or legal terms
+         - rel="canonical": indicate preferred version of a page (SEO: prevents duplicate content penalties)
+         All <link> tags belong in <head> and do not display on the page. Use href for the URL and optional attributes (type, media, crossorigin, async, defer).
+    -->
+
+    <TITLE> My First Web Page </TITLE> <!-- This sets the title of the web page that appears in the browser tab -->
+
+    <!-- Notes: meta, name, include
+         - meta: provides document metadata (charset, viewport, description, keywords). Placed in <head> and not visible to users.
+         - name (attribute): used on <meta> (e.g., name="description") and on form controls (name="username") to identify values for search engines and form submission.
+         - include: bring external resources into the page via <link>, <script src="...">, <img src="..."> or server-side includes/templating. Use async/defer for non-blocking scripts and prefer correct MIME types.
+         Best practices: include a viewport meta for responsive layout and a concise description meta for SEO.
+    -->
+</HEAD>
+<body> <!-- This section contains the content of the web page that will be displayed to the user -->
+
+    <H1> This is an h1 heading </H1> <!-- This is a heading element that displays text in large text -->
+    <H2> This is an h2 heading </H2> <!-- This is a heading element that displays text in medium text -->
+    <H3> This is an h3 heading </H3> <!-- This is a heading element that displays text in small text -->
+    <H4> This is an h4 heading </H4> <!-- This is a heading element that displays text in smaller text -->
+    <H5> This is an h5 heading </H5> <!-- This is a heading element that displays text in even smaller text -->
+<hr> <!-- This is a horizontal rule element that creates a horizontal line across the page -->
+    <br> <!-- This is a line break element that creates a new line in the text -->
+
+    <p> <!-- This is a paragraph element that displays a block of text -->
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    </p> 
+
+     <pre> <!-- This is a preformatted text element that displays text with its original formatting -->
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    </pre> 
+
+<a  href="https://www.google.com" 
+target="_blank" 
+title="Goes to Google">
+<!--  a (anchor) is a hyperlink element that creates a link to another page or resource -->
+<!-- HREF is a attribute that specifies the URL of the link -->
+<!-- TARGET is an attribute that specifies where to open the linked document -->
+<!-- TITLE is an attribute that provides additional information about the link when hovered over -->
+Click me to go to Google!
+</a>
+
+<br>
+<br>
+
+<a href="exercises.html"> <!-- href can also link to other html files-->
+Song lyrics  
+</a>
+
+<br>
+<br>
+
+<a href="mailto:test@mail.com" 
+title="Send email to test">
+Email me.
+</a> <!-- href can also send emails to a specific address-->
+
+<br>
+<br>
+
+<h3> This is me when bro buys me food </h3>
+
+    <!-- Notes: alt, figcaption, caption
+         - alt: required text alternative for images; used by screen readers and shown when images fail to load. Keep it concise and descriptive.
+         - figcaption: place inside a <figure> as a visible caption describing image context; use for explanatory captions, not repeats of alt.
+         - caption: use <caption> as the first child of <table> to describe the table's purpose (semantic, not decorative).
+         Best practices: use alt for functional images, empty alt (alt="") for decorative images, and figcaption for descriptive captions.
+    -->
+
+<a href="https://en.wikipedia.org/wiki/Meme">
+    <img src="images/hamze.jpg"
+    alt="This is me when bro buys me food"
+    height="200">
+    <!-- This is an image element that displays an image on the page -->
+    <!-- SRC is an attribute that specifies the URL of the image -->
+    <!-- ALT is an attribute that provides alternative text for the image if it cannot be displayed -->
+    <!-- HEIGHT and WIDTH are attributes that specify the dimensions of the image -->
+    <!-- Can also display gifs-->
+</a>
+
+<audio controls autoplay muted loop> <!-- This is an audio element that allows you to embed audio content on the page -->
+<source src="Janice STFUsong.mp3" type="audio/mpeg"> <!-- This is a source element that specifies the audio file and its type -->
+<!-- controls is an attribute that displays playback controls for the audio element -->
+<!-- autoplay is an attribute that starts playing the audio as soon as it's ready -->
+<!-- muted is an attribute that initializes the audio in a muted state -->
+<!-- loop is an attribute that makes the audio loop continuously -->
+
+</audio>
+
+
+<a target="_blank" href="https://en.wikipedia.org/wiki/Iceman_(album)">
+<video width="500px" controls autoplay muted> <!-- This is a video element that allows you to embed video content on the page -->
+<source src="Drake - Janice STFU.mp4" type="video/mp4"> <!-- This is a source element that specifies the video file and its type -->
+
+</video>
+</a>
+
+<br><br>
+
+<p> This is normal text</p>
+<p> This is <b>bold</b> text</p>
+<p> This is <i>italic</i> text</p>
+<p> This is <u>underlined</u> text</p>
+<p> This is <del>deleted</del> text</p>
+<p> This is <big>big</big> text</p>
+<p> This is <small>small</small> text</p>
+<p> This is <sub>subscript</sub> text</p>
+<p> This is <sup>superscript</sup> text</p>
+<p> This is <tt>monospaced</tt> text</p>
+<p> This is <mark>highlighted</mark> text</p>
+
+<br><br>
+
+<!-- span is an inline container for phrasing content -->
+<!-- div is a block-level container for phrasing content -->
+
+<h1><span style="background-color: tomato;">This is span title</span></h1>
+<!-- <h1><div style="background-color: cyan;">This is div title</div></h1> -->
+
+<br><br>
+
+<h4>Grocery List</h4>
+<ul> <!-- This is an unordered list element that creates a bulleted list -->
+    <li> milk</li> <!-- This is a list item element that represents an item in a list -->
+    <li> eggs </li>
+    <li> bread </li>
+    <li> coffee supplies</li>
+    <ul> <!-- This is a nested unordered list element that creates a sublist -->
+        <li> coffee beans </li>
+        <li> creamer </li>
+        <li> sugars </li>
+        </ul>
+</ul>
+
+<h4> To Do List </h4>
+<ol> <!-- This is an ordered list element that creates a numbered list -->
+    <li> Eat breakfast </li>
+    <li> Go to class </li>  
+    <li> Walk the dog</li>
+    <li> Work </li>
+</ol>
+
+<h4>Mythical Creatures</h4>
+<dl> <!-- This is a description list element that creates a list of terms and their descriptions -->
+    <dt> Dragon </dt> <!-- This is a description term element that represents a term -->
+    <dd> A mythical creature </dd> <!-- This is a description description element that provides the description for the term -->
+    <dt> Phoenix </dt>
+    <dd> A mythical bird that is reborn from its ashes </dd>   
+    <dt> Vampire </dt>
+    <dd> A mythical being that feeds on the blood of humans </dd>
+    <dt> Werewolf </dt>
+    <dd> A mythical creature that transforms from a human to a wolf during a full moon
+</dl>
+
+<br><br>
+
+<h3>Store Hours</h3>
+
+<table border="1" style="background-color: black;"> <!-- This is a table element that creates a table to display data in rows and columns and border gives the table a border -->
+    <tr align="center" style="background-color: lightblue;"> <!-- This is a table row element that represents a row in the table -->
+    <th width="100"> Sunday </th> <!-- This is a table header element that represents a header cell in the table -->
+    <th width="100"> Monday </th>
+    <th width="100"> Tuesday </th>
+    <th width="100"> Wednesday </th>
+    <th width="100"> Thursday </th>
+    <th width="100"> Friday </th>
+    <th width="100"> Saturday </th>
+    </tr>
+    <tr align="center" style="background-color: aliceblue;"> <!-- This is a table row element that represents a row in the table, with text aligned to the center -->
+        <td> Closed </td>   <!-- This is a table data element that represents a cell in the table -->
+        <td> 9:00 AM - 5:00 PM </td>
+        <td> 9:00 AM - 5:00 PM </td>
+        <td> 9:00 AM - 5:00 PM </td>
+        <td> 9:00 AM - 5:00 PM </td>
+        <td> 9:00 AM - 5:00 PM </td>
+        <td> 10:00 AM - 2:00 PM </td>
+    </tr>
+</table>
+
+
+<br><br>
+
+<a href="https://www.google.com">
+<button style="font-size: 25px; background-color: grey; color: lightblue; border-radius: 25px;">Click me!</button>
+</a>
+<!-- This is a button element that creates a clickable button on the page -->
+<!-- style is an attribute that allows you to apply CSS styles directly to the element -->  
+<!-- font-size is a CSS property that sets the size of the text inside the button -->
+<!-- background-color is a CSS property that sets the background color of the button -->   
+<!-- color is a CSS property that sets the color of the text inside the button -->
+<!-- border-radius is a CSS property that sets the rounded corners of the button -->
+
+<br>
+<button onclick="doSomething()" style="font-size: 25px; background-color: grey; color: lightblue; border-radius: 25px;">Click me!</button>
+
+<p id="Greeting">Hello, World!</p>
+
+<script>
+function doSomething() {
+  document.getElementById("Greeting").innerHTML = "Goodbye, World!";
+}
+
+// This is a script element that allows you to embed JavaScript code on the page
+// function is a JavaScript keyword that defines a function
+// document.getElementById is a JavaScript method that selects an element by its ID
+// innerHTML is a JavaScript property that sets the HTML content of an element
+// onclick is an attribute that specifies a JavaScript function to be executed when the button is clicked
+// When the button is clicked, the doSomething function is called, which changes the text of the paragraph with the ID "Greeting" to "Goodbye, World!"
+
+</script>
+
+<br><br>
+
+<!-- Form: collects user data and submits to server-side script at index.php using POST
+         enctype="multipart/form-data" allows file uploads in the form data
+
+         Form methods summary and examples (below examples are commented out):
+         - GET: appends form data to the URL as a query string. Use for non-sensitive
+             data like search queries. Results can be bookmarked and are size-limited.
+         - POST: sends form data in the HTTP request body. Use for sensitive data,
+             large payloads, or file uploads. Not exposed in the URL.
+
+         Example GET form (disabled):
+         <form action="search.php" method="GET">
+                 <input name="q" placeholder="Search...">
+                 <input type="submit" value="Search">
+         </form>
+
+         Example POST form (disabled):
+         <form action="submit.php" method="POST" enctype="multipart/form-data">
+                 <input name="username">
+                 <input type="password" name="password">
+                 <input type="file" name="avatar">
+                 <input type="submit" value="Send">
+         </form>
+-->
+
+    <!-- Notes: input, name
+         - input: creates form controls (type=text, email, file, radio, checkbox, etc.). Use proper types to get native validation and controls.
+         - name (attribute): crucial for form submission — the server receives key/value pairs where the key is input.name. Radio and checkbox groups rely on shared name values.
+         - Accessibility: pair inputs with <label for="id"> and include ids; use required, aria-label or aria-describedby for extra context.
+    -->
+<form action="index.php" method="POST" enctype="multipart/form-data">
+
+    <!-- Username: text input with placeholder and length validation -->
+    <label for="Username">Username:</label>
+    <input type="text" id="Username" placeholder="Enter your username" minlength="6" maxlength="20" required>
+
+    <!-- Password: password input masks user input and enforces min/max length -->
+    <label for="Password">Password:</label>
+    <input type="Password" id="Password" placeholder="Enter your password" minlength="8" maxlength="20" required>
+
+    <!-- Email: input type=email provides basic email-address validation -->
+    <label for="Email">Email:</label>
+    <input type="email" id="Email" placeholder="Enter your email" required>
+
+    <!-- Phone: tel type for telephone numbers; pattern enforces formatting (two-digit groups) -->
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" placeholder="Enter your phone number" pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}">
+
+    <!-- Birth date: date control shows a date picker in supporting browsers -->
+    <label for="bday">Birth Date:</label>
+    <input type="date" id="bday"><br>
+
+    <!-- Quantity: number input with min/max and default value -->
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="0" max="99" value="1"><br>
+
+    <!-- Title: radio buttons allow a single choice within the same 'name' group -->
+    <label for="title">Title:</label>
+
+    <label for="Mr.">Mr.:</label>
+    <input type="radio" id="Mr." value="Mr." name="title">
+    <label for="Ms.">Ms.:</label>
+    <input type="radio" id="Ms." value="Ms." name="title">
+    <label for="PhD.">PhD.:</label>
+    <input type="radio" id="PhD." value="PhD." name="title"><br>
+
+    <!-- Payment: select dropdown with predefined options; selected value is submitted -->
+    <label for="payment">Payment Method:</label>
+    <select id="payment">
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="Giftcard">Giftcard</option>
+    </select><br>
+
+    <!-- Subscribe: checkbox for boolean choice; checked state indicates subscription -->
+    <label for="subscribe">Subscribe to newsletter:</label>
+    <input type="checkbox" id="subscribe"><br>
+
+    <!-- Comment: multiline text area for longer user input -->
+    <label for="comment">Comment:</label>
+    <textarea id="comment" rows="3" cols="25"></textarea><br>
+
+    <!-- File: file picker restricted to PNG and JPEG images via accept attribute -->
+    <label for="file">Upload a file:</label>
+    <input type="file" id="file" accept="image/png, image/jpeg"><br>
+
+    <!-- Reset: clears all form controls; Submit: sends the form data to the server -->
+    <input type="Reset"><br>
+    <input type="Submit">
+
+</form>
+
+<br><br>
+
+<header style="background-color:purple;">        
+<h1>Welcome to My Website</h1>
+<a href="">Home</a>
+<a href="">About me</a>
+<a href="">Products</a>
+<a href="">Contact us</a>
+<hr>
+</header>
+
+<main>
+<h4>Check out this cool song</h4>
+<image src="images/hamze.jpg" alt="Hamze"></image>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</main>
+
+
+<footer style="background-color:purple;">    
+<hr>
+Author: ME<br>
+&copy; Copyright Reserved<br>
+<small><a href="mailto:fake@mail.com">Fake@Mail.com</a></small>
+
+</footer>
+
+
+
+
+    </body> <!-- This closes the body section of the document -->
+</HTML>
