@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+
+<TITLE>HTTP Notes</TITLE>
+
+</HEAD>
+<BODY>
+<P>
+
+<b>HTTP</b> stands for HyperText Transfer Protocol.<br>
+It is an <b>application-layer protocol</b> that defines how messages are formatted and transmitted between a client (e.g. a web browser) and a server on the web.<br>
+HTTP is the foundation of data communication on the World Wide Web — every time you visit a website, your browser uses HTTP to ask the server for the page and the server uses HTTP to send it back.<br>
+
+<br>
+
+<b>HTTP Requests and Responses</b> are the two main components of HTTP communication.<br>
+An <b>HTTP Request</b> is sent by the client to the server asking for a resource (e.g. a web page, image, or API data).<br>
+An <b>HTTP Response</b> is sent back by the server, containing either the requested resource or an error message if it could not be found or accessed.<br>
+
+<br>
+
+<b>HTTP over TCP/IP:</b><br>
+HTTP itself does not care how the data travels — it only defines the format and rules of messages. However, in practice, HTTP almost always runs on top of <b>TCP/IP</b>, which is responsible for reliably transmitting the raw bytes between machines.<br>
+Think of TCP/IP as the "road" and HTTP as the "language" written on signs along that road.<br>
+
+<br>
+
+<b>HTTP is Stateless:</b><br>
+Each HTTP request/response pair is completely independent — the server does not remember previous requests. This is called being <b>stateless</b>.<br>
+Why? Statelessness makes servers simpler and highly scalable, since they don't need to track every connected client.<br>
+The downside is that things like login sessions can't exist natively in HTTP. To work around this, developers use:<br>
+&nbsp;&nbsp;- <b>Cookies</b>: small pieces of data the server sends to the browser and the browser sends back on every request.<br>
+&nbsp;&nbsp;- <b>Sessions</b>: server-side storage identified by a session ID kept in a cookie.<br>
+&nbsp;&nbsp;- <b>Local/Session Storage</b>: browser-side key-value storage used by JavaScript.<br>
+&nbsp;&nbsp;- <b>Tokens (e.g. JWT)</b>: signed tokens the client sends with each request to prove identity.<br>
+
+<br>
+
+<b>URL Anatomy:</b><br>
+A URL (Uniform Resource Locator) tells the browser exactly where to send the HTTP request.<br>
+Example: <code>https://www.example.com:443/products?id=42#reviews</code><br>
+&nbsp;&nbsp;- <b>Scheme:</b> <code>https</code> — which protocol to use.<br>
+&nbsp;&nbsp;- <b>Host:</b> <code>www.example.com</code> — the server's domain name.<br>
+&nbsp;&nbsp;- <b>Port:</b> <code>443</code> — which port to connect to (80 is default for HTTP, 443 for HTTPS).<br>
+&nbsp;&nbsp;- <b>Path:</b> <code>/products</code> — the specific resource on the server.<br>
+&nbsp;&nbsp;- <b>Query String:</b> <code>?id=42</code> — extra parameters sent to the server.<br>
+&nbsp;&nbsp;- <b>Fragment:</b> <code>#reviews</code> — a location within the page (processed by the browser, never sent to the server).<br>
+
+<br>
+
+<b>HTTPS</b> stands for HyperText Transfer Protocol <b>Secure</b>.<br>
+It is HTTP with an added <b>encryption layer</b> using <b>TLS</b> (Transport Layer Security, the modern successor to the older SSL standard).<br>
+Without HTTPS, all data — including passwords and credit card numbers — travels as plain text that anyone intercepting the connection can read.<br>
+With HTTPS, data is encrypted before being sent and only the intended recipient can decrypt it.<br>
+To enable HTTPS, the server must have a <b>TLS certificate</b> issued by a trusted Certificate Authority (CA) (e.g. Let's Encrypt, DigiCert).<br>
+When your browser connects to an HTTPS site, it performs a <b>TLS handshake</b> — exchanging keys and verifying the certificate — before any HTTP data is sent.<br>
+Look for the padlock icon in the browser address bar as a sign of an active HTTPS connection.<br>
+
+<br>
+
+<b>HTTP Methods:</b><br>
+HTTP methods (also called "verbs") tell the server what action to perform on a resource.<br>
+<br>
+<b>GET</b> — Retrieve a resource. The most common method. Data is in the URL (query string), not the body. Should never modify data on the server.<br>
+<b>POST</b> — Send data to create a new resource. Data is in the request body. Submitting a form or uploading a file typically uses POST.<br>
+<b>PUT</b> — Replace an entire existing resource with the data in the request body. It is <b>idempotent</b> — sending the same request 10 times has the same result as sending it once.<br>
+<b>PATCH</b> — Partially update an existing resource. Unlike PUT which replaces the whole thing, PATCH only changes the fields you send. (e.g. updating just a user's email without touching other fields.)<br>
+<b>DELETE</b> — Remove a resource from the server. Also idempotent — deleting something that is already gone produces the same end state.<br>
+<b>HEAD</b> — Like GET, but the server only returns the response headers, not the body. Useful for checking if a resource exists or checking its size before downloading.<br>
+<b>OPTIONS</b> — Ask the server what methods and headers it supports for a resource. Browsers automatically send an OPTIONS "preflight" request before cross-origin requests (CORS).<br>
+
+<br>
+
+<b>HTTP Header Fields:</b><br>
+Headers are key-value pairs sent with every request and response. They carry metadata — information about the message itself rather than the content.<br>
+<br>
+<img src="images/httpheaders.png" alt="HTTP Header Fields" width="500" height="300">
+<br>
+
+<b>General (describe the transaction):</b><br>
+&nbsp;&nbsp;- <b>Request URL:</b> The full URL of the resource being requested.<br>
+&nbsp;&nbsp;- <b>Request Method:</b> The HTTP method used (GET, POST, etc.).<br>
+&nbsp;&nbsp;- <b>Status Code:</b> The outcome of the request (e.g. 200 OK, 404 Not Found).<br>
+&nbsp;&nbsp;- <b>Remote Address:</b> The IP address and port of the server.<br>
+&nbsp;&nbsp;- <b>Referrer-Policy:</b> Controls how much of the referring URL is shared when the user follows a link (e.g. <code>strict-origin-when-cross-origin</code>).<br>
+<br>
+
+<b>Response Headers (server → client):</b><br>
+&nbsp;&nbsp;- <b>Server:</b> The name/version of the server software (e.g. <code>nginx/1.24</code>).<br>
+&nbsp;&nbsp;- <b>Content-Type:</b> The format of the response body (e.g. <code>text/html; charset=utf-8</code>, <code>application/json</code>). The browser uses this to decide how to render the data.<br>
+&nbsp;&nbsp;- <b>Content-Length:</b> The size of the response body in bytes.<br>
+&nbsp;&nbsp;- <b>Set-Cookie:</b> Instructs the browser to store a cookie and send it back on future requests.<br>
+&nbsp;&nbsp;- <b>Cache-Control:</b> Tells the browser/proxy how long to cache the response (see Caching section below).<br>
+&nbsp;&nbsp;- <b>Date:</b> The timestamp when the response was generated.<br>
+<br>
+
+<b>Request Headers (client → server):</b><br>
+&nbsp;&nbsp;- <b>Cookie:</b> Cookies previously set by the server, sent back automatically with each request.<br>
+&nbsp;&nbsp;- <b>Accept:</b> Content types the client can handle (e.g. <code>text/html, application/json</code>).<br>
+&nbsp;&nbsp;- <b>Accept-Language:</b> Preferred languages (e.g. <code>en-US, en;q=0.9</code>).<br>
+&nbsp;&nbsp;- <b>Accept-Encoding:</b> Compression formats the client supports (e.g. <code>gzip, deflate, br</code>).<br>
+&nbsp;&nbsp;- <b>Content-Type:</b> The format of the request body (e.g. <code>application/json</code> when sending JSON to an API).<br>
+&nbsp;&nbsp;- <b>Content-Length:</b> The size of the request body in bytes.<br>
+&nbsp;&nbsp;- <b>Authorization:</b> Credentials to authenticate the client. Common formats:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>Basic base64(username:password)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <code>Bearer &lt;JWT token&gt;</code><br>
+&nbsp;&nbsp;- <b>User-Agent:</b> Identifies the client software (e.g. <code>Mozilla/5.0 ... Chrome/124.0</code>). Servers may use this to serve different content to mobile vs desktop.<br>
+&nbsp;&nbsp;- <b>Referer:</b> The URL of the page the user was on before making this request. Note: "Referer" is a historical misspelling of "Referrer" baked into the standard.<br>
+&nbsp;&nbsp;- <b>Origin:</b> Used in CORS — tells the server which domain the request came from.<br>
+
+<br>
+
+<b>HTTP Status Codes:</b><br>
+<img src="images/errorcodes.png" alt="HTTP Status Codes" width="500" height="300">
+<br>
+Status codes are three-digit numbers the server includes in every response to tell the client what happened.<br>
+<br>
+<b>1xx — Informational:</b> The request was received; keep going.<br>
+&nbsp;&nbsp;- 100 Continue — Server received the request headers; client should send the body.<br>
+&nbsp;&nbsp;- 101 Switching Protocols — Server is switching to a different protocol (e.g. upgrading to WebSocket).<br>
+<br>
+<b>2xx — Success:</b> The request was understood and fulfilled.<br>
+&nbsp;&nbsp;- 200 OK — Standard success response.<br>
+&nbsp;&nbsp;- 201 Created — A new resource was successfully created (common after POST).<br>
+&nbsp;&nbsp;- 204 No Content — Success, but there is nothing to return (common after DELETE).<br>
+<br>
+<b>3xx — Redirection:</b> The client needs to take further action (usually follow a different URL).<br>
+&nbsp;&nbsp;- 301 Moved Permanently — Resource has a new permanent URL; update your bookmarks.<br>
+&nbsp;&nbsp;- 302 Found — Temporary redirect; keep using the original URL next time.<br>
+&nbsp;&nbsp;- 304 Not Modified — Cached version is still valid; no need to re-download the resource.<br>
+<br>
+<b>4xx — Client Error:</b> The request was wrong — it's the client's fault.<br>
+&nbsp;&nbsp;- 400 Bad Request — Malformed syntax or invalid parameters.<br>
+&nbsp;&nbsp;- 401 Unauthorized — Authentication required (you need to log in).<br>
+&nbsp;&nbsp;- 403 Forbidden — Authenticated but not allowed (you don't have permission).<br>
+&nbsp;&nbsp;- 404 Not Found — Resource does not exist at this URL.<br>
+&nbsp;&nbsp;- 405 Method Not Allowed — The resource exists but doesn't support this method (e.g. trying to DELETE a read-only endpoint).<br>
+&nbsp;&nbsp;- 429 Too Many Requests — The client is being rate-limited.<br>
+<br>
+<b>5xx — Server Error:</b> The request was fine, but the server failed to fulfil it.<br>
+&nbsp;&nbsp;- 500 Internal Server Error — Generic server-side crash.<br>
+&nbsp;&nbsp;- 502 Bad Gateway — The server acting as a proxy received a bad response from an upstream server.<br>
+&nbsp;&nbsp;- 503 Service Unavailable — Server is down or overloaded; try again later.<br>
+&nbsp;&nbsp;- 504 Gateway Timeout — Upstream server took too long to respond.<br>
+
+<br>
+
+<b>HTTP Caching:</b><br>
+Caching allows browsers and proxy servers to store copies of responses so they don't need to be re-fetched every time, speeding up the web and reducing server load.<br>
+Key headers involved:<br>
+&nbsp;&nbsp;- <b>Cache-Control:</b> <code>max-age=3600</code> tells the browser to reuse the cached response for 3600 seconds. <code>no-cache</code> means always revalidate. <code>no-store</code> means never cache (e.g. sensitive banking pages).<br>
+&nbsp;&nbsp;- <b>ETag:</b> A "fingerprint" (hash) of the resource. The browser sends it back in <code>If-None-Match</code>; if unchanged, the server replies 304 Not Modified — saving bandwidth.<br>
+&nbsp;&nbsp;- <b>Last-Modified / If-Modified-Since:</b> Same idea but using a timestamp instead of a hash.<br>
+
+<br>
+
+<b>CORS (Cross-Origin Resource Sharing):</b><br>
+Browsers enforce a <b>Same-Origin Policy</b> — JavaScript on <code>siteA.com</code> cannot normally make requests to <code>siteB.com</code> to protect users from malicious scripts.<br>
+CORS is the controlled mechanism that lets servers <b>opt in</b> to allowing cross-origin requests.<br>
+The server uses the <code>Access-Control-Allow-Origin</code> response header to say which origins are permitted (e.g. <code>*</code> for anyone, or <code>https://myapp.com</code> for one specific site).<br>
+For non-simple requests (e.g. PUT with JSON), the browser first sends an <b>OPTIONS preflight</b> request to check permissions before sending the real request.<br>
+
+<br>
+
+<b>HTTP/2:</b><br>
+<img src="images/http2.png" alt="HTTP/2" width="500" height="500">
+<br>
+HTTP/2 (released 2015) is a major revision designed to solve performance problems with HTTP/1.1.<br>
+<br>
+Key improvements over HTTP/1.1:<br>
+&nbsp;&nbsp;- <b>Multiplexing:</b> Multiple requests and responses can travel simultaneously over a <b>single connection</b>. In HTTP/1.1, browsers had to open 6–8 parallel connections and could only send one request per connection at a time, causing a "head-of-line blocking" problem.<br>
+&nbsp;&nbsp;- <b>Header Compression (HPACK):</b> HTTP/1.1 sends headers as plain text on every request. HTTP/2 compresses them, which is significant because headers can be large (cookies, user-agent strings) and are mostly repetitive across requests.<br>
+&nbsp;&nbsp;- <b>Server Push:</b> The server can proactively send resources (like CSS or JavaScript files) to the client before the client even asks for them, reducing round-trips.<br>
+&nbsp;&nbsp;- <b>Binary Protocol:</b> HTTP/1.1 is text-based (human-readable). HTTP/2 uses binary framing, which is more efficient to parse and less error-prone.<br>
+
+<br>
+
+<b>HTTP/3:</b><br>
+HTTP/3 (standardised 2022) replaces TCP with a new protocol called <b>QUIC</b>, built on UDP.<br>
+<br>
+Why? TCP has a fundamental "head-of-line blocking" issue at the transport layer — if one packet is lost, the entire connection stalls until it is retransmitted, even for unrelated data streams. With HTTP/2 multiplexing, one lost packet blocks all streams simultaneously.<br>
+QUIC solves this by making each stream independent at the transport level, so a lost packet only delays its own stream.<br>
+Other QUIC benefits:<br>
+&nbsp;&nbsp;- <b>Faster connection setup:</b> QUIC combines the TCP handshake and TLS handshake into one, reducing connection time from ~2 round trips to 1 (or 0 for known servers).<br>
+&nbsp;&nbsp;- <b>Connection migration:</b> A QUIC connection can survive a change in IP address (e.g. moving from Wi-Fi to mobile data) without reconnecting.<br>
+HTTP/3 is now used by major sites including Google and Cloudflare.<br>
+
+</P>
+
+</BODY>
+</HTML>

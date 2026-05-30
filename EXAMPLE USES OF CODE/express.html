@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+
+<TITLE>Express Notes</TITLE>
+
+</HEAD>
+<BODY>
+<P>
+
+Express is a minimal, unopinionated web framework for Node.js used to build servers and APIs. <br>
+It sits on top of Node's built-in HTTP module and adds routing, middleware support, and utilities that make building web applications much easier. <br>
+
+<br>
+
+<b>Setup:</b><br>
+To use Express, first initialise a Node project and install the package:<br>
+<pre>
+npm init -y
+npm install express
+</pre>
+
+<br>
+
+<b>Basic Server Example:</b><br>
+<pre>
+const express = require('express');
+const app = express();
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// GET route
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+// GET with URL parameter
+app.get('/users/:id', (req, res) => {
+  const { id } = req.params;
+  res.json({ userId: id, name: 'Alice' });
+});
+
+// POST route
+app.post('/users', (req, res) => {
+  const { name, email } = req.body;
+  res.status(201).json({ message: 'User created', name, email });
+});
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
+});
+</pre>
+
+<br>
+
+<b>Key Concepts:</b><br>
+
+<b>express()</b> — Creates an app instance. This is the starting point of every Express application.<br>
+<b>app.use()</b> — Registers middleware that runs on every request before the route handler is reached.<br>
+<b>app.get() / app.post() / app.put() / app.delete()</b> — Registers a route handler for a specific HTTP method and URL path.<br>
+<b>req</b> — The incoming request object. Contains: req.params (URL params like :id), req.body (POST body), req.headers, req.query (query string).<br>
+<b>res</b> — The outgoing response object. Methods: res.send() (send text), res.json() (send JSON), res.status() (set status code).<br>
+<b>app.listen(port, callback)</b> — Starts the HTTP server on the given port.<br>
+
+<br>
+
+<b>Middleware:</b><br>
+Middleware is a function that runs between the incoming request and the route handler. <br>
+It has access to req, res, and a next() function that passes control to the next middleware or route. <br>
+app.use(express.json()) is built-in middleware that parses JSON request bodies automatically. <br>
+You can write custom middleware: <br>
+<pre>
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next(); // must call next() or the request will hang
+});
+</pre>
+
+<br>
+
+<b>How a Request Flows:</b><br>
+1. Client sends a request (e.g., GET /users/42) <br>
+2. Middleware runs first (e.g., parses the JSON body) <br>
+3. Express matches the URL and HTTP method to a route handler <br>
+4. The route handler runs and sends back a response <br>
+
+<br>
+
+<b>URL Parameters vs Query Strings:</b><br>
+URL parameter: /users/:id — accessed via req.params.id — used to identify a specific resource.<br>
+Query string: /users?sort=asc — accessed via req.query.sort — used for optional filters or options.<br>
+
+<br>
+
+<b>HTTP Status Codes in Express:</b><br>
+res.status(200).json({}) — OK (default for successful GET)<br>
+res.status(201).json({}) — Created (use after successfully creating a resource with POST)<br>
+res.status(400).json({}) — Bad Request (invalid input from client)<br>
+res.status(404).json({}) — Not Found (resource doesn't exist)<br>
+res.status(500).json({}) — Internal Server Error (something went wrong on the server)<br>
+
+<br>
+
+<b>Testing Routes:</b><br>
+You can test your Express routes from the terminal without a browser:<br>
+<pre>
+# GET request
+curl http://localhost:3000/users/42
+
+# POST request with JSON body
+curl -X POST http://localhost:3000/users \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Bob","email":"bob@example.com"}'
+</pre>
+
+</P>
+</BODY>
+</HTML>
