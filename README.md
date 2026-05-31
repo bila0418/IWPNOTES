@@ -1,6 +1,6 @@
 # IWP Notes
 
-Personal study notes for the **Introductory Web Programming (IWP)** course.
+Noter for IWP
 
 ## Contents
 
